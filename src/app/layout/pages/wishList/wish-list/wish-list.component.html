@@ -1,0 +1,27 @@
+@if (mywishlist) {
+    <section class="w-11/12 mx-auto bg-gray-200 my-3 p-7">
+        <div class="row justify-between items-center">
+            <div>
+                <h1 class="text-lg font-bold my-3">MY WishList:</h1>
+            </div>
+        </div>
+        @for (item of mywishlist; track $index) {
+            <div class="my-3 border-b border-white row items-center">
+                <div class="md:w-1/12 p-2 ">
+                    <img [src]="item.imageCover" class="object-cover w-full" alt="">
+                </div>
+                <div class="md:w-9/12 p-2 w-full">
+                    <h1 class="text-lg font-semibold my-3">{{item.title}}</h1>
+                    <p class="text-green-400">price:{{item.price}} </p>
+                    <button class="my-3 " (click)="removefromwishlist(item._id)">
+                        <i class="fa fa-trash text-red-600 me-1"></i>
+                        <span>remove</span>
+                    </button>
+                </div>
+                <div class="md:w-2/12 p-2 space-x-2">
+                    <button class="my-3 btn-sec" (click)="MoveFromWishListToCart(item._id)"> <span>Add To Cart +</span></button>
+                </div>
+            </div>   
+        }
+    </section>
+}

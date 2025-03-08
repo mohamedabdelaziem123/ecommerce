@@ -1,0 +1,20 @@
+<section class="my-10">
+    <div class="container mx-auto">
+        <h1 class="my-16 font-bold text-center text-4xl text-green-500"> ALL BRANDS</h1>
+    <div class="row  justify-center ">
+        @for (brand of brandsData; track $index) {
+            <div class="md:w-1/4 p-3 rounded" (click)="switchmodal(brand._id)">
+                <div class=" ring-2 ring-green-400 rounded my-2 pb-4 hover:shadow-lg hover:shadow-green-400">
+                    <img [src]="brand.image" class="w-full object-cover" alt="">
+                    <h1 class=" text-center text-lg text-gray-700 "> {{brand.name}}</h1>
+                </div>
+            </div>
+            
+            
+        }
+        @if (brandsservice.switchmodal) { <app-brand-details [brandId]="id"></app-brand-details> }
+    </div>
+    
+    </div>
+    
+</section>

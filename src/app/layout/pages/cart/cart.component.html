@@ -1,0 +1,49 @@
+@if (dataIncart) {
+    <section class="w-11/12 mx-auto bg-gray-200 my-3 p-7">
+        <div class="row justify-between items-center">
+            <div>
+                <h1 class="text-lg font-bold my-3">shop cart:</h1>
+                <p class="text-green-400">total price:{{dataIncart.totalCartPrice}}</p>
+            </div>
+            
+            <div>
+                <button class="my-3 " (click)="clearcartitem()">
+                    <i class="fa fa-trash text-green-400 me-1"></i>
+                    <span class="me-4">clear</span>
+                </button>
+            </div>
+        </div>
+
+        @for (prod of dataIncart.products; track $index) {
+            <div class="my-3 border-b border-white row items-center">
+                <div class="md:w-1/12 p-2 ">
+                    <img [src]="prod.product?.imageCover" class="object-cover w-full" alt="">
+                </div>
+                <div class="md:w-10/12 p-2 w-full ">
+                    <h1 class="text-lg font-semibold my-3">{{prod.product?.title}}</h1>
+                    <p class="text-green-400">price:{{prod.price}} </p>
+                    <button class="my-3 " (click)="deletecartitem(prod.product!._id)">
+                        <i class="fa fa-trash text-green-400 me-1"></i>
+                        <span>remove</span>
+                    </button>
+                </div>
+                <div class="md:w-1/12 p-2 space-x-2">
+                  <button class="p-1 rounded bg-green-400 text-white" (click)="updatecart(prod.product!._id,prod.count=prod.count+1)">+</button>
+                  <span>{{prod.count}} </span>
+                  <button class="p-1 rounded bg-red-400 text-white" (click)="updatecart(prod.product!._id,prod.count=prod.count-1)">-</button>
+                </div>
+                
+            </div>
+            
+        }
+        @if(dataIncart.totalCartPrice!=0){
+            <div class="flex justify-center">
+                <button class="btn-main me-3" [routerLink]="['/shippingaddress',dataIncart._id]">order</button>
+            </div>
+        }
+        
+        
+    
+    </section>
+}
+

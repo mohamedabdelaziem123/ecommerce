@@ -1,0 +1,47 @@
+@if(Flag){
+    <div class="w-2/4 mx-auto py-6 ">
+        <p class="text-2xl"> resetCode form:</p>
+        <form [formGroup]="resetCodeForm" (ngSubmit)="onSubmit()">
+            @if (errResponse) {
+                <div class="my-4 bg-red-300 rounded-lg py-2 w-full  "> 
+                    <p class="text-center"> {{errResponse}} </p>
+              </div>
+            }
+            
+            <div class="my-4">
+                <label for="resetCodeInput" class="mb-1">resetCode:</label>
+                <input id="resetCodeInput" type="text" name="resetCode" class="rounded-lg placeholder: p-2 w-full border border-gray-400 focus:border-blue-400 " formControlName="resetCode">
+            </div>
+            @if (resetCodeForm.get("resetCode")?.errors && resetCodeForm.get("resetCode")?.touched) {
+                @if (resetCodeForm.get("resetCode")?.getError("required")) {
+                    <div class="my-4 bg-red-300 rounded-lg py-2 w-full  "> 
+                        <p class="text-center"> resetCode is required </p>
+                  </div>
+                }
+                @else {
+                    <div class="my-4 bg-red-300 rounded-lg py-2 w-full  "> 
+                        <p class="text-center"> enter a valid resetCode </p>
+                  </div>
+                }
+                
+            }
+            
+            
+                
+                <button class=" btn-main block ms-auto " [disabled]="!resetCodeForm.valid">
+                    @if (load) {
+                        <span class="fa fa-spinner fa-spin"></span>
+                    }
+                    <span class="ms-1">reset</span></button>
+    
+           
+            
+    
+        </form>
+        
+    
+    </div>
+}
+@if(!Flag){
+   <app-new-password></app-new-password>
+}

@@ -1,0 +1,58 @@
+<div class="w-2/4 mx-auto py-6 ">
+    <p class="text-2xl"> login Now:</p>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        @if (errResponse) {
+            <div class="my-4 bg-red-300 rounded-lg py-2 w-full  "> 
+                <p class="text-center"> {{errResponse}} </p>
+          </div>
+        }
+        
+        <div class="my-4">
+            <label for="emailInput" class="mb-1">email:</label>
+            <input id="emailInput" type="text" name="email" class="rounded-lg placeholder: p-2 w-full border border-gray-400 focus:border-blue-400 " formControlName="email">
+        </div>
+        @if (loginForm.get("email")?.errors && loginForm.get("email")?.touched) {
+            @if (loginForm.get("email")?.getError("required")) {
+                <div class="my-4 bg-red-300 rounded-lg py-2 w-full  "> 
+                    <p class="text-center"> email is required </p>
+              </div>
+            }
+            @else {
+                <div class="my-4 bg-red-300 rounded-lg py-2 w-full  "> 
+                    <p class="text-center"> enter a valid email </p>
+              </div>
+            }
+            
+        }
+        <div class="my-4">
+            <label for="passwordInput" class="mb-1">password:</label>
+            <input id="passwordInput" type="password" name="password" class="rounded-lg  placeholder:text-gray-200 p-2 w-full border border-gray-400 focus:border-blue-400 " formControlName="password">
+        </div>
+        @if (loginForm.get("password")?.errors && loginForm.get("password")?.touched) {
+            @if (loginForm.get("password")?.getError("required")) {
+                <div class="my-4 bg-red-300 rounded-lg py-2 w-full  "> 
+                    <p class="text-center"> password is required </p>
+              </div>
+            }
+            @else {
+                <div class="my-4 bg-red-300 rounded-lg py-2 w-full  "> 
+                    <p class="text-center"> enter a valid password </p>
+              </div>
+            }
+            
+        }
+        <div class="flex items-center">
+            <a routerLink="/forgetPassword"  class="text-blue-500 cursor-pointer hover:underline">forgetPassword</a>
+            <button class=" btn-main block ms-auto " [disabled]="!loginForm.valid">
+                @if (load) {
+                    <span class="fa fa-spinner fa-spin"></span>
+                }
+                <span class="ms-1">login</span></button>
+
+        </div>
+        
+
+    </form>
+    
+
+</div>

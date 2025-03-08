@@ -1,0 +1,25 @@
+@if (product) {
+    <div class="row items-center my-5">
+        <div class="md:w-1/4 p-3 w-[85vw] mx-auto">
+            <owl-carousel-o [options]="customOptions" >
+                @for (img of product.images; track $index) {
+                    <ng-template carouselSlide >
+                        <img [src]="img" [alt]="product.category.name" [title]="product.category.name" class="w-full object-cover">
+                      </ng-template>
+                }
+            </owl-carousel-o>
+        </div>
+        <div class="md:w-3/4 p-3">
+            <h1 class="font-semibold text-lg my-3">{{product.title}}</h1>
+            <p class="text-sm text-gray-400">{{product.description}}</p>
+                 <span class="text-xs text-green-400">{{product.category.name}}</span>
+                 <div class="flex justify-between items-center">
+                    <span>{{product.price|currency}}EGP</span>
+                    <span><i class="fa fa-star text-yellow-300"></i>{{product.ratingsAverage}}</span>
+                    
+                 </div>
+             <button class="w-full btn-main" (click)="AddtoCart(product._id)" >+ add to cart</button>
+        </div>
+    </div>   
+}
+

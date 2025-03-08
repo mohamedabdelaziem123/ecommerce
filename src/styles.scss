@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn-main{
+ @apply px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-white hover:outline outline-2 outline-green-500 hover:text-green-500;
+}
+.row{
+    @apply flex flex-wrap;
+}
+.adjust-footer{
+    @apply flex flex-col min-h-screen justify-between;
+}
+.btn-sec{
+    @apply px-4 py-2 bg-blue-400 text-white rounded-lg hover:bg-white hover:outline outline-2 outline-blue-400 hover:text-blue-400;
+   }

@@ -1,0 +1,49 @@
+
+@if(productlist){
+  <div class="w-12/12 mx-auto">
+    <app-home-slider></app-home-slider>
+    
+    <app-category-slider></app-category-slider>
+    <div class="w-3/4 mx-auto my-3">
+        <input [(ngModel)]="searchData"  placeholder="search by title..." type="text" name="search" class="rounded-lg placeholder: p-2 w-full border-2 border-gray-400   focus:border-green-400 focus:border-2"  >
+      </div>
+      
+  <div class="row my-6 ">
+  
+    @for (product of productlist|search:searchData ; track $index) {
+
+        <div class=" md:w-1/3 lg:w-1/4 xl:w-1/6 p-3">
+            <div class="p-3 rounded bg-gray-200 text-center cursor-pointer" >
+            <div [routerLink]="['/productDetails',product._id]">
+              <img [src]="product.imageCover" class="w-full rounded" [alt]="product.title">
+              <span class=" text-sm font-semibold text-green-400"> {{product.category.name}}</span>
+              <h2 class="font-bold text-sm my-3 ">{{product.title.split(" ").splice(0,2).join(" ")}}</h2>
+              <div class="flex justify-between"> 
+                <span>{{product.price|currency}}EGP</span>
+                
+                <div class="flex flex-nowrap flex-col" >
+                  <span>{{product.ratingsAverage}} <i class="fa fa-star text-yellow-300"></i></span>
+                  
+                <span class=" text-gray-300">({{product.ratingsQuantity}})</span>
+                </div>
+                
+                
+            </div>
+          </div>
+          
+                  <div class="flex justify-between items-center my-3">
+                      
+                      <button class="btn-main bg-yellow" (click)="AddtoCart(product._id)">Add to Cart+</button>
+                      <button class="block ms-auto text-3xl"  [id]="product._id" (click)="AddandRemoveWishList(product._id)" ><i class="fa-solid fa-heart  "></i></button>
+                  </div>
+                  
+                  
+              </div>
+        </div>
+
+    }
+   
+    
+    </div>  
+  </div>
+}
