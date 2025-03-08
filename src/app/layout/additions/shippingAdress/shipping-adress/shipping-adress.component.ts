@@ -9,7 +9,8 @@ import { CartService } from '../../../../shared/services/cart/cart.service';
   selector: 'app-shipping-adress',
   imports: [ReactiveFormsModule],
   templateUrl: './shipping-adress.component.html',
-  styleUrl: './shipping-adress.component.scss'
+  styleUrl: './shipping-adress.component.scss',
+  
 })
 export class ShippingAdressComponent implements OnInit{
   inputword:string="payment method"
